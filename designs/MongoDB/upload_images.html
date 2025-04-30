@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paste Image Upload</title>
+    <style>
+        #preview {
+            max-height: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Paste Image and Add Text</h1>
+    <form id="uploadForm">
+        <input type="text" name="text" id="text" placeholder="Enter caption" required><br><br>
+        <div contenteditable="true" id="pasteArea" style="border:1px dashed gray; padding:20px; width:300px;">
+            Paste image here (Ctrl+V)
+        </div>
+        <img id="preview" src="" style="display:none;"><br><br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <script>
+        let imageBlob = null;
+
+        document.getElementById("pasteArea").addEventListener("paste", function (e) {
+            const items = e.clipboardData.items;
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf("image") !== -1) {
+                    const blob = items[i].getAsFile();
+                    imageBlob = blob;
+
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const img = document.getElementById("preview");
+                        img.src = event.target.result;
+                        img.style.display = "block";
+                    };
+                    reader.readAsDataURL(blob);
+                }
+            }
+        });
+
+        document.getElementById("uploadForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (!imageBlob) {
+                alert("Please paste an image first.");
+                return;
+            }
+
+            const text = document.getElementById("text").value;
+            const formData = new FormData();
+            formData.append("text", text);
+            formData.append("image", imageBlob);
+
+            fetch("http://localhost:8000/upload", {
+                method: "POST",
+                body: formData,
+            })
+                .then(res => res.text())
+                .then(res => alert(res))
+                .catch(err => alert("Upload failed: " + err));
+        });
+    </script>
+</body>
+</html>

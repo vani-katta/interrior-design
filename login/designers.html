@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designer Gallery</title>
+    <style>
+        /* Styles omitted for brevity, keep your existing CSS here */
+        body {
+    margin: 0;
+    padding: 0;
+    font-family:  'Cormorant Garamond', serif;
+}
+.container1 {
+    width: 100%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.description-text{
+    font-size: 1.2em;
+}
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.reasons {
+    margin-top: 20px;
+}
+
+.reasons ul {
+    padding-left: 20px;
+}
+
+.reasons li {
+    margin-bottom: 8px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    height: 50px; /* Adjust logo size */
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.container {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Add a spacer element after every 3rd container */
+.container:nth-child(3n):after {
+    content: "";
+    display: block;
+    height: 40px; /* Adjust the height to control the spacing */
+    width: 100%;
+}
+
+.image-box {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-box:hover .overlay {
+    opacity: 1;
+}
+
+.overlay button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.overlay button:hover {
+    background-color: #0056b3;
+}
+
+.love-icon-container {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.love-icon-container i {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.love-icon-container i.fa-heart {
+    color: red;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../logo.png" alt="Website Logo" />
+            <h1>Style Space</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#price-calculators">Price Calculators</a></li>
+                <li><a href="#design-ideas">Design Ideas</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container1">
+        <h1>Our Designers</h1>
+        <p class="description-text">Explore the talented designers who will bring your vision to life.</p>
+    </div>
+
+    <div class="gallery-container" id="gallery"></div>
+
+    <script>
+        fetch("http://localhost:9000/designers")
+            .then(res => res.json())
+            .then(data => {
+                const gallery = document.getElementById("gallery");
+
+                data.forEach(item => {
+                    const container = document.createElement("div");
+                    container.className = "container";
+
+                    const imageBox = document.createElement("div");
+                    imageBox.className = "image-box";
+
+                    const img = document.createElement("img");
+                    img.src = "data:image/jpeg;base64," + item.image; // image from base64
+                    img.alt = "Designer Image";
+
+                    imageBox.appendChild(img);
+
+                    const description = document.createElement("p");
+                    description.textContent = `Designer: ${item.name}, Phone: ${item.phone}`;
+                    description.style.fontWeight = "bold";
+                    description.style.textAlign = "center";
+                    description.style.marginTop = "10px";
+
+                    container.appendChild(imageBox);
+                    container.appendChild(description);
+
+                    gallery.appendChild(container);
+                });
+            })
+            .catch(err => {
+                console.error("Failed to load gallery:", err);
+            });
+    </script>
+</body>
+</html>

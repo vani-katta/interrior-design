@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interior Design Services</title>
+    <link rel="stylesheet" href="fullhome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Style Space</div>
+        <div class="nav-bar">
+            <div class="nav-item active" id="bhk-nav">BHK Type</div>
+            <div class="nav-item" id="rooms-nav">Rooms to design</div>
+            <div class="nav-item" id="package-nav">Package</div>
+            <div class="nav-item" id="quote-nav">Get Quote</div>
+        </div>
+        <div class="progress-bar">
+            <span id="progress-text">1/4</span>
+        </div>
+    </header>
+
+    <section id="services" class="container">
+        <div class="step active" id="bhk-step">
+            <h3>Select your BHK type</h3>
+            <div class="bhk-options-container">
+                <div class="bhk-option">
+                    <label><input type="radio" name="bhk" value="1 BHK"> 
+                        <span class="radio-box">1 BHK</span>
+                    </label>
+                </div>
+                <div class="bhk-option">
+                    <label><input type="radio" name="bhk" value="2 BHK"> 
+                        <span class="radio-box">2 BHK</span>
+                    </label>
+                </div>
+                <div class="bhk-option">
+                    <label><input type="radio" name="bhk" value="3 BHK"> 
+                        <span class="radio-box">3 BHK</span>
+                    </label>
+                </div>
+                <div class="bhk-option">
+                    <label><input type="radio" name="bhk" value="4 BHK"> 
+                        <span class="radio-box">4 BHK</span>
+                    </label>
+                </div>
+                <div class="bhk-option">
+                    <label><input type="radio" name="bhk" value="5 BHK+"> 
+                        <span class="radio-box">5 BHK+</span>
+                    </label>
+                </div>
+            </div>
+            <button id="next-btn-1" class="btn">Next</button>
+        </div>
+        <div class="step" id="rooms-step">
+            <h3>Select the rooms you’d like us to design</h3>
+            <div class="room-options-container">
+                <div class="room-option">
+                    <label>Living Room</label>
+                    <button class="minus" data-room="living">−</button>
+                    <span id="living-count">1</span>
+                    <button class="plus" data-room="living">+</button>
+                </div>
+                <div class="room-option">
+                    <label>Kitchen</label>
+                    <button class="minus" data-room="kitchen">−</button>
+                    <span id="kitchen-count">1</span>
+                    <button class="plus" data-room="kitchen">+</button>
+                </div>
+                <div class="room-option">
+                    <label>Bedroom</label>
+                    <button class="minus" data-room="bedroom">−</button>
+                    <span id="bedroom-count">3</span>
+                    <button class="plus" data-room="bedroom">+</button>
+                </div>
+                <div class="room-option">
+                    <label>Bathroom</label>
+                    <button class="minus" data-room="bathroom">−</button>
+                    <span id="bathroom-count">3</span>
+                    <button class="plus" data-room="bathroom">+</button>
+                </div>
+                <div class="room-option">
+                    <label>Dining</label>
+                    <button class="minus" data-room="dining">−</button>
+                    <span id="dining-count">1</span>
+                    <button class="plus" data-room="dining">+</button>
+                </div>
+            </div>
+            <button id="back-btn-1" class="btn">Back</button>
+            <button id="next-btn-2" class="btn">Next</button>
+        </div>
+        <div class="step" id="package-step">
+            <h3>Pick your package</h3>
+            <div class="package-options-container">
+                <div class="package-option">
+                    <label><input type="radio" name="package" value="Essentials"> 
+                        <span class="radio-box">Essentials (₹₹)</span>
+                    </label>
+                    <p>A range of essential home interior solutions that's perfect for all your needs.</p>
+                    <ul>
+                        <li>Affordable pricing</li>
+                        <li>Convenient designs</li>
+                        <li>Basic accessories</li>
+                    </ul>
+                </div>
+                <div class="package-option">
+                    <label><input type="radio" name="package" value="Premium"> 
+                        <span class="radio-box">Premium (₹₹₹)</span>
+                    </label>
+                    <p>Superior home interior solutions that will take your interiors to the next level.</p>
+                    <ul>
+                        <li>Mid-range pricing</li>
+                        <li>Premium designs</li>
+                        <li>Wide range of accessories</li>
+                    </ul>
+                </div>
+                <div class="package-option">
+                    <label><input type="radio" name="package" value="Luxe"> 
+                        <span class="radio-box">Luxe (₹₹₹₹)</span>
+                    </label>
+                    <p>High-end interior solutions for the ultimate home interior experience you deserve.</p>
+                    <ul>
+                        <li>Elite pricing</li>
+                        <li>Lavish designs</li>
+                        <li>Extensive range of accessories</li>
+                    </ul>
+                </div>
+            </div>
+            <button id="back-btn-2" class="btn">Back</button>
+            <button id="next-btn-3" class="btn">Next</button>
+        </div>
+        <div class="step" id="quote-step">
+            <h3>Your estimate is almost ready</h3>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="phone">Phone number:</label>
+                <input type="tel" id="phone" name="phone"><br><br>
+                <label for="property">Property Name:</label>
+                <input type="text" id="property" name="property"><br><br>
+                <button id="back-btn-3" class="btn">Back</button>
+                <button id="submit-btn" class="btn">Get My Estimate</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="fullhome.js"></script>
+</body>
+</html>
